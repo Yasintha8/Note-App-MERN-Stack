@@ -9,8 +9,9 @@ const Signup = () => {
   const handleSubmit =async (e) => {
     e.preventDefault()
     try{
-      const response = await axios.post('http://localhost:5000/api/auth/register',
-        {name, email, password});
+      const response = await axios.post("http://localhost:5000/api/auth/register",
+        {name, email, password}
+      );
         console.log(response)
     } catch (error) {
         console.log(error)
@@ -21,11 +22,12 @@ const Signup = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-semibold text-center mb-6">Signup</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-4" >
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
             <input 
-              type="text" 
+              type="text"
+              value={name}
               onChange={(e) => setName(e.target.value)}
               id="name" 
               placeholder="Enter Name" 
@@ -37,6 +39,7 @@ const Signup = () => {
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input 
               type="email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               id="email" 
               placeholder="Enter Email" 
@@ -48,6 +51,7 @@ const Signup = () => {
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input 
               type="password" 
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               id="password" 
               placeholder="*****" 
