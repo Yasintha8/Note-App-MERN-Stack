@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useAuth } from '../context/ContextProvider';
 
 const Navbar = () => {
+    const {user} = useAuth()
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -21,16 +23,22 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className='hidden md:flex items-center'>
-                <span className='mr-4'>user name</span>
-                <Link to="/login" className='bg-blue-500 px-4 py-2 rounded mr-4'>
+                {!user ?(
+                    <>
+                    <Link to="/login" className='bg-blue-500 px-4 py-2 rounded mr-4'>
                     Login
                 </Link>
                 <Link to="/register" className='bg-green-500 px-4 py-2 rounded mr-4'>
                     Signup
-                </Link>
+                </Link></>
+                ) :(
+                <>
+                <span className='mr-4'>{user.name}</span>
                 <button className='bg-red-500 px-4 py-2 rounded'>
                     Logout
                 </button>
+                </>
+                )}
             </div>
 
             {/* Mobile Menu Button */}
